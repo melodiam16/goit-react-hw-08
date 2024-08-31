@@ -3,6 +3,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
 import { nanoid } from "nanoid";
+import css from "./ContactForm.module.css";
 
 const FeedbackSchema = Yup.object().shape({
   username: Yup.string()
@@ -10,6 +11,7 @@ const FeedbackSchema = Yup.object().shape({
     .max(50, "Too Long!")
     .required("Required"),
   number: Yup.string()
+    .matches(/^\d{3}-\d{2}-\d{2}$/, "Must be in the format XXX-XX-XX")
     .min(3, "Too Short!")
     .max(50, "Too Long!")
 
@@ -39,18 +41,28 @@ export default function ContactForm({ onAdd }) {
         onSubmit={handleSubmit}
         validationSchema={FeedbackSchema}
       >
-        <Form>
-          <div>
+        <Form className={css.form}>
+          <div className={css.formGroup}>
             <label htmlFor={`${id}-name`}>Name</label>
             <Field type="text" name="username" id={`${id}-name`} />
-            <ErrorMessage name="username" component="span" />
+            <ErrorMessage
+              name="username"
+              component="span"
+              className={css.error}
+            />
           </div>
-          <div>
+          <div className={css.formGroup}>
             <label htmlFor={`${id}-number`}>Number</label>
             <Field type="text" name="number" id={`${id}-number`} />
-            <ErrorMessage name="number" component="span" />
+            <ErrorMessage
+              name="number"
+              component="span"
+              className={css.error}
+            />
           </div>
-          <button type="submit">Add contact</button>
+          <button className={css.formBtn} type="submit">
+            Add contact
+          </button>
         </Form>
       </Formik>
     </>
