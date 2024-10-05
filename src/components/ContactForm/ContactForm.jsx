@@ -1,12 +1,12 @@
 import { Formik, Field, Form } from "formik";
-import { useId } from "react";
 import * as Yup from "yup";
 import { ErrorMessage } from "formik";
-import { nanoid } from "nanoid";
 import css from "./ContactForm.module.css";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 
 const FeedbackSchema = Yup.object().shape({
-  username: Yup.string()
+  name: Yup.string()
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
@@ -18,22 +18,25 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const initialValues = {
-  username: "",
-  number: "",
-};
-export default function ContactForm({ onAdd }) {
+export default function ContactForm() {
+  const dispatch = useDispatch();
+
+  const initialValues = {
+    name: "",
+    number: "",
+  };
+
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    onAdd({
-      id: nanoid(),
-      name: values.username,
-      number: values.number,
-    });
+    dispatch(
+      addContact({
+        id: crypto.randomUUID(),
+        name: values.name,
+        number: values.number,
+      })
+    );
     actions.resetForm();
   };
 
-  const id = useId();
   return (
     <>
       <Formik
@@ -43,17 +46,13 @@ export default function ContactForm({ onAdd }) {
       >
         <Form className={css.form}>
           <div className={css.formGroup}>
-            <label htmlFor={`${id}-name`}>Name</label>
-            <Field type="text" name="username" id={`${id}-name`} />
-            <ErrorMessage
-              name="username"
-              component="span"
-              className={css.error}
-            />
+            <label>Name</label>
+            <Field type="text" name="name" />
+            <ErrorMessage name="name" component="span" className={css.error} />
           </div>
           <div className={css.formGroup}>
-            <label htmlFor={`${id}-number`}>Number</label>
-            <Field type="text" name="number" id={`${id}-number`} />
+            <label>Number</label>
+            <Field type="text" name="number" />
             <ErrorMessage
               name="number"
               component="span"
