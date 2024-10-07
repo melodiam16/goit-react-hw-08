@@ -17,6 +17,8 @@ export const { setStatusFilter } = slice.actions;
 
 export default slice.reducer;
 
+export const selectFilters = (state) => state.filters.name;
+
 // export const filter = createAction("filters/setStatusFilter");
 
 // const initialState = {
