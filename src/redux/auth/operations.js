@@ -25,7 +25,6 @@ export const register = createAsyncThunk(
         return thunkAPI.rejectWithValue("This email is already in use.");
       }
 
-      // Інші помилки з сервера
       return thunkAPI.rejectWithValue(data.message || "Registration failed.");
     }
   }
