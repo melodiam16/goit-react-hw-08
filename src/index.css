@@ -9,6 +9,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./assets/background/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body {

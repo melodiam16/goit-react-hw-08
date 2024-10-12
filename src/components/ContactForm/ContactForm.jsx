@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import { ErrorMessage } from "formik";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,14 +27,7 @@ export default function ContactForm() {
   };
 
   const handleSubmit = (values, actions) => {
-    dispatch(
-      // addContact({
-      //   id: crypto.randomUUID(),
-      //   name: values.name,
-      //   number: values.number,
-      // })
-      addContact(values)
-    );
+    dispatch(addContact(values));
     actions.resetForm();
   };
 
@@ -48,12 +41,12 @@ export default function ContactForm() {
         <Form className={css.form}>
           <div className={css.formGroup}>
             <label>Name</label>
-            <Field type="text" name="name" />
+            <Field type="text" name="name" className={css.input} />
             <ErrorMessage name="name" component="span" className={css.error} />
           </div>
           <div className={css.formGroup}>
             <label>Number</label>
-            <Field type="text" name="number" />
+            <Field type="text" name="number" className={css.input} />
             <ErrorMessage
               name="number"
               component="span"

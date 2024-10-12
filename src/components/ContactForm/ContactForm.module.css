@@ -17,8 +17,9 @@
   background-color: #1632d1;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 15px;
+  padding: 15px 10px;
+
   cursor: pointer;
   transition: background-color 0.3s;
   width: 100px;
@@ -28,4 +29,15 @@
 .error {
   color: orangered;
   font-size: 14px;
+}
+
+.input {
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 30px;
+  line-height: 40px;
+  border-radius: 20px;
+  padding: 0px 20px;
+  border-color: black;
+  margin-bottom: 20px;
+  color: rgb(0, 0, 0);
 }

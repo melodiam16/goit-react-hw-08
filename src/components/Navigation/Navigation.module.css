@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.nav {
+  text-decoration: none;
+  font-weight: 700;
+  color: #2a363b;
+}

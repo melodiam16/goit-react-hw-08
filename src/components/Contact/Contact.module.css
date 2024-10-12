@@ -7,14 +7,12 @@
   padding: 10px;
 }
 
-.contactText {
-}
-
 .contactBtn {
   background-color: #1632d1;
   color: white;
+  width: 90px;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s;
