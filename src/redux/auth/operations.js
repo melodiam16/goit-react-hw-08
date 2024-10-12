@@ -69,7 +69,6 @@ export const refreshUser = createAsyncThunk(
   {
     condition: (_, thunkApi) => {
       const reactState = thunkApi.getState();
-      console.log(reactState.auth);
 
       return reactState.auth.token !== null;
     },
